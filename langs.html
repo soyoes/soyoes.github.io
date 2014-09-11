@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Programming Language benchmarks|soyoes.github.io</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="description" content="programming language speed benchmarks for c cpp go java objc(objective-c) nodejs scala lua perl ruby python groovy and js(javascript)">
+	<link rel="apple-touch-startup-image" href="">
+    <link rel="apple-touch-icon" href="">
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
+	<script src="//liberjs.org/liber.js"></script> 	
+	<script src="js/views.js"></script> 	
+</head>
+<body>
+
+<table>
+	<tr>
+		<th> Language </th>
+		<th> int<br>(1..1,000,000)  </th>
+		<th> strcat<br>(1000000 times) </th>
+		<th> </th>
+	</tr>
+	<tr><td>c</td><td>2</td><td>10</td><td>strcpy</td></tr>
+	<tr><td>cpp</td><td>2</td><td>22</td><td>std::string.append<br>string+string leads no response</td></tr>
+	<tr><td>go</td><td>0.5</td><td>13</td><td>bytes.Buffer.WriteString<br>strings.Join cost 80ms+<br>NOTICE: in fact "go run" cost much time, it can be proved by exec "time go run test.go" on your shell </td></tr>
+
+	<tr><td>java 6</td><td>6</td><td>35</td><td>StringBuilder</td></tr>
+	<tr><td>OBJC(iOS Simulator)</td><td>2</td><td>45</td><td>
+											NSString stringByAppendingString:TIMEOUT<br>
+											NSMutableString appendFormat:246ms <br>
+											NSMutableArray componentsJoinedByString:129ms <br>
+											NSMutableString appendString:63ms <br>
+											CFMutableStringRef appendString:52ms <br>
+											CFStringRef[]=>CFArrayRef join appendString:45ms</td></tr>
+	
+	<tr><td>php 5.4</td><td>36</td><td>56</td><td>with APC<br>./test.php but not php test.php</td></tr>
+	<tr><td>scala 2.0</td><td>4.5</td><td>76</td><td>no java.lang.stringBuilder no response!!!</td></tr>
+	<tr><td>nodejs 0.8.22</td><td>2</td><td>95</td><td></td></tr>
+	<tr><td>lua 5.2.1</td><td>40</td><td>225</td><td>table.insert/concat</td></tr>
+	<tr><td>groovy 2.2.1</td><td>239</td><td>227</td><td>str<<=str2<br>older version have to use java.StringBuilder?</td></tr>
+	<tr><td>python 2.7.2</td><td>213</td><td>247</td><td>arr.append->join<br>pyc has a same result</td></tr>
+	<tr><td>perl 5.12</td><td>144</td><td>288</td><td></td></tr>
+	<tr><td>ruby 1.8.7(REWROTE)</td><td>140</td><td>286</td><td>arr.join</td></tr>
+	<tr><td>ruby 2.0.0</td><td>141</td><td>438</td><td>(arr.join)<br>str+str no response</td></tr>
+	
+	<tr><td>js/ff22</td><td>2</td><td>34</td><td>(+ on ff is amazing), innerHTML is pretty fast<br>it does not mean html render is fast either.</td></tr>
+	<tr><td>js/chrome</td><td>2</td><td>110</td><td></td></tr>
+	<tr><td>js/safari6</td><td>62</td><td>112</td><td></td></tr>
+	<tr><td>js/opera12</td><td>180</td><td>250</td><td></td></tr>
+</table>
+
+</body>
+</html>
